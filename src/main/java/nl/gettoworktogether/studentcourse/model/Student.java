@@ -2,6 +2,7 @@ package nl.gettoworktogether.studentcourse.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -9,17 +10,24 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "students")
 public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column
-    String name;
+    @Column(name = "first_name")
+    String firstName;
+
+    @Column(name = "last_name")
+    String lastName;
+
+    @Column(name = "student_nr")
+    String studentNr;
 
     @OneToMany(mappedBy = "student")
-    @JsonIgnore
+    @JsonIgnoreProperties("student")
 //    @JsonBackReference
 //    @JsonManagedReference
     Set<StudentCourseResult> results;
@@ -30,14 +38,33 @@ public class Student {
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
-    public String getName() {
-        return name;
+
+    public String getFirstName() {
+        return firstName;
     }
-    public void setName(String name) {
-        this.name = name;
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getStudentNr() {
+        return studentNr;
+    }
+
+    public void setStudentNr(String studentNr) {
+        this.studentNr = studentNr;
     }
 
     public Set<StudentCourseResult> getResults() {

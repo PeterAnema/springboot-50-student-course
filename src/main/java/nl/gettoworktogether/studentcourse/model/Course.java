@@ -1,6 +1,7 @@
 package nl.gettoworktogether.studentcourse.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -20,7 +21,8 @@ public class Course {
     String name;
 
     @OneToMany(mappedBy = "course")
-    @JsonIgnore
+//    @JsonIgnore
+    @JsonIgnoreProperties("course")
 //    @JsonBackReference
 //    @JsonManagedReference
     Set<StudentCourseResult> results;

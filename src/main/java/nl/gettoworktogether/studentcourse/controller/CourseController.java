@@ -30,6 +30,7 @@ import java.util.Map;
 
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/courses")
 public class CourseController {
 

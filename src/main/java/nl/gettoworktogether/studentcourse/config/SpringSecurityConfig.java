@@ -34,10 +34,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
 
         httpSecurity
-                //HTTP Basic authentication
-                .httpBasic()
+            //HTTP Basic authentication
+            .httpBasic()
                 .and()
-                .authorizeRequests()
+            .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/admin/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET, "/users/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET, "/courses/**").hasRole("USER")
@@ -46,8 +46,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/authenticated/**").authenticated()
 //                .anyRequest().permitAll()
                 .and()
-                .csrf().disable()
-                .formLogin().disable();
+            .cors()
+                .and()
+            .csrf().disable()
+            .formLogin().disable();
 
 //        httpSecurity.headers().frameOptions().disable();    // to be able to access H2 console
 

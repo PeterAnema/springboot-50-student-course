@@ -32,7 +32,8 @@ import java.util.Map;
  */
 
 @RestController
-@RequestMapping(value = "/students")
+@CrossOrigin
+@RequestMapping(value = "/api/v1/students")
 public class StudentController {
 
     @Autowired

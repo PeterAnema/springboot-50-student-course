@@ -1,5 +1,8 @@
 package nl.gettoworktogether.studentcourse.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -8,16 +11,19 @@ import java.time.LocalDate;
 public class StudentCourseResult {
 
     @EmbeddedId
+    @JsonIgnore
     private StudentCourseResultKey id;
 
     @ManyToOne
     @MapsId("studentId")
     @JoinColumn(name = "student_id")
+    @JsonIgnoreProperties("results")
     private Student student;
 
     @ManyToOne
-    @MapsId("courseId")
-    @JoinColumn(name = "course_id")
+        @MapsId("courseId")
+        @JoinColumn(name = "course_id")
+    @JsonIgnoreProperties("results")
     private Course course;
 
     @Column

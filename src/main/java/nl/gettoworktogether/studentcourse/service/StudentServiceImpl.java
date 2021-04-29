@@ -37,7 +37,7 @@ public class StudentServiceImpl implements StudentService {
             return studentRepository.findAll();
         }
         else {
-            return studentRepository.findAllByName(name);
+            return studentRepository.findAllByLastName(name);
         }
     }
 
@@ -57,7 +57,9 @@ public class StudentServiceImpl implements StudentService {
     public void updateStudent(long id, Student student) {
         if (!studentRepository.existsById(id)) { throw new UserNotFoundException(); }
         Student storedStudent = studentRepository.findById(id).orElse(null);
-        storedStudent.setName(student.getName());
+        storedStudent.setFirstName(student.getFirstName());
+        storedStudent.setLastName(student.getLastName());
+        storedStudent.setStudentNr(student.getStudentNr());
         studentRepository.save(student);
     }
 
@@ -67,8 +69,14 @@ public class StudentServiceImpl implements StudentService {
         Student storedStudent = studentRepository.findById(id).orElse(null);
         for (String field : fields.keySet()) {
             switch (field) {
-                case "name":
-                    storedStudent.setName((String) fields.get(field));
+                case "first_name":
+                    storedStudent.setFirstName((String) fields.get(field));
+                    break;
+                case "last_name":
+                    storedStudent.setLastName((String) fields.get(field));
+                    break;
+                case "student_nr":
+                    storedStudent.setStudentNr((String) fields.get(field));
                     break;
             }
         }
