@@ -21,8 +21,8 @@ public class StudentCourseResult {
     private Student student;
 
     @ManyToOne
-        @MapsId("courseId")
-        @JoinColumn(name = "course_id")
+    @MapsId("courseId")
+    @JoinColumn(name = "course_id")
     @JsonIgnoreProperties("results")
     private Course course;
 
